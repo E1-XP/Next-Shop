@@ -1,0 +1,16 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+
+  &__logo {
+  }
+
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+  }
+}

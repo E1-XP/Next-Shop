@@ -1,21 +1,54 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
 .navigation {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
   border: 1px solid black;
+
+  .container {
+    position: relative;
+  }
 
   &__logo {
   }
 
-  &__listwrapper {
-    flex-grow: 0.5;
+  &__btn {
+    border: none;
   }
 
-  &__list {
-    display: flex;
+  &__listwrapper {
+  }
+
+  &__list--absolute {
     flex-direction: row;
+    position: absolute;
+    right: 7rem;
+    top: -3px;
+
+    @include media-breakpoint-up(md) {
+      position: initial;
+    }
+
+    .navigation__item:nth-of-type(1),
+    .navigation__item:nth-of-type(2) {
+      @include media-breakpoint-down(md) {
+        @include visually-hidden;
+      }
+    }
   }
 
   &__item {
+  }
+
+  .badge {
+    left: 160%;
+    top: 55%;
+
+    @include media-breakpoint-up(md) {
+      left: 120%;
+    }
   }
 }

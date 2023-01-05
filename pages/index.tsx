@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Inter } from "@next/font/google";
 
 import { Navigation } from "../components/navigation";
+import { Slider } from "../components/slider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,9 @@ export default function MainPage() {
       </Head>
       <header>
         <Navigation />
+        <Slider />
       </header>
-      <main>ok</main>
+      <main></main>
     </>
   );
 }

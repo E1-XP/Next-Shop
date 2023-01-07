@@ -1,10 +1,9 @@
 import Head from "next/head";
-import { Inter } from "@next/font/google";
 
 import { Navigation } from "../components/navigation";
 import { Slider } from "../components/slider";
 
-const inter = Inter({ subsets: ["latin"] });
+import { inter, spaceGrotesk } from "../styles/fonts";
 
 export default function MainPage() {
   return (
@@ -15,11 +14,13 @@ export default function MainPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <Navigation />
-        <Slider />
-      </header>
-      <main></main>
+      <div className={inter.className}>
+        <header>
+          <Navigation />
+          <Slider />
+        </header>
+        <main></main>
+      </div>
     </>
   );
 }

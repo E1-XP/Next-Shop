@@ -1,0 +1,14 @@
+.carousel {
+  &__caption {
+    right: auto;
+    bottom: auto;
+    top: 1rem;
+    left: 1rem;
+    max-width: 33rem;
+    text-align: initial;
+  }
+
+  &__paragraph {
+    text-align: justify;
+  }
+}

@@ -4,6 +4,7 @@ import { Navigation } from "../components/navigation";
 import { Slider } from "../components/slider";
 
 import { inter, spaceGrotesk } from "../styles/fonts";
+import styles from "./main.module.scss";
 
 export default function MainPage() {
   return (
@@ -15,7 +16,7 @@ export default function MainPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={inter.className}>
-        <header>
+        <header className={styles.header}>
           <Navigation />
           <Slider />
         </header>

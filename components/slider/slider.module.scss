@@ -4,7 +4,6 @@
 
 .carousel {
   min-height: 0;
-  background-color: black;
 
   &__caption {
     right: auto;
@@ -34,6 +33,16 @@
   &__paragraph {
     text-align: justify;
     font-size: 1.2rem;
+  }
+
+  &__backimg {
+    height: 100%;
+    object-fit: cover;
+    object-position: 85%;
+    width: 100%;
+    background-color: black;
+    z-index: 0;
+    position: absolute;
   }
 
   &__img {

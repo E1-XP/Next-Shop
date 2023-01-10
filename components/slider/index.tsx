@@ -48,7 +48,11 @@ export const Slider = () => (
     </div>
     <div className="carousel-inner h-100">
       {data.map((item, idx) => (
-        <div key={idx} className="carousel-item active h-100">
+        <div
+          key={idx}
+          className={`carousel-item ${idx === 0 ? "active" : ""} h-100`}
+        >
+          <div className={styles.carousel__backimg}></div>
           <Image
             src={item.img}
             className={`d-block img-fluid ${styles.carousel__img}`}

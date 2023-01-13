@@ -1,0 +1,35 @@
+.product {
+  border: none;
+  border-radius: 0;
+
+  &__img {
+    border-radius: 0;
+    border: none;
+  }
+
+  &__rating {
+    width: 1rem;
+
+    &--active {
+      stroke: orange;
+      fill: orange;
+    }
+  }
+
+  &__oldprice {
+    color: gray;
+    text-decoration: line-through;
+  }
+}
+
+.card__body {
+  padding: 1rem 0.5rem;
+
+  & p {
+    padding: 0.1rem;
+
+    &:last-of-type {
+      font-weight: 600;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import { Navigation } from "../components/navigation";
 import { Slider } from "../components/slider";
+import { ProductList } from "../components/product-list";
 
 import { inter, spaceGrotesk } from "../styles/fonts";
 import styles from "./main.module.scss";
@@ -20,7 +21,9 @@ export default function MainPage() {
           <Navigation />
           <Slider />
         </header>
-        <main></main>
+        <main>
+          <ProductList />
+        </main>
       </div>
     </>
   );

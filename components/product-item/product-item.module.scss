@@ -32,4 +32,12 @@
       font-weight: 600;
     }
   }
+
+  a {
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+  }
 }

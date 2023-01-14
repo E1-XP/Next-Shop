@@ -1,0 +1,23 @@
+.products {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.nav-tabs {
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  border: none !important;
+  color: black;
+
+  &:hover {
+    color: gray;
+  }
+
+  &:global(.active) {
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}

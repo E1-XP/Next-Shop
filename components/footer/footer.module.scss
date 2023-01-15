@@ -1,0 +1,48 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+.footer {
+  border: 1px solid black;
+}
+
+.appendix {
+  padding: 2rem 0;
+  height: 15rem;
+
+  @include media-breakpoint-up(md) {
+    height: initial;
+  }
+
+  &__copyright {
+    text-align: center;
+  }
+
+  &__social-link {
+    padding: 0.4rem;
+    display: block;
+    background-color: whitesmoke;
+    border-radius: 50%;
+
+    &:not(:last-of-type) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__settings {
+    > :global(.dropdown):first-of-type {
+      margin-right: 2.2rem;
+
+      > :global(.dropdown-toggle)::after {
+        margin-top: 0.55rem;
+      }
+    }
+
+    & span {
+      display: block;
+      height: 1rem;
+      width: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+}

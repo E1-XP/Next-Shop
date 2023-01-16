@@ -121,7 +121,7 @@ export const Footer = () => (
                     id="flag-icons-us"
                     viewBox="0 0 640 480"
                   >
-                    <g fill-rule="evenodd">
+                    <g fillRule="evenodd">
                       <g strokeWidth="1pt">
                         <path
                           fill="#bd3d44"
@@ -151,7 +151,7 @@ export const Footer = () => (
                         id="flag-icons-us"
                         viewBox="0 0 640 480"
                       >
-                        <g fill-rule="evenodd">
+                        <g fillRule="evenodd">
                           <g strokeWidth="1pt">
                             <path
                               fill="#bd3d44"

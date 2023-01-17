@@ -5,6 +5,7 @@ import { Footer } from "../../components/footer";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./cart.module.scss";
+import { ProductTable } from "../../components/product-table";
 
 export default function MainPage() {
   return (
@@ -25,8 +26,10 @@ export default function MainPage() {
             Cart
           </h2>
         </header>
-        <main>
-          <section className="products"></section>
+        <main className="container">
+          <section className="products">
+            <ProductTable />
+          </section>
         </main>
         <Footer />
       </div>

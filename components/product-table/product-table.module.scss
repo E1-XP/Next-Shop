@@ -22,16 +22,24 @@
       align-items: center;
     }
 
+    & td:nth-last-of-type(2) {
+      display: none;
+
+      @include media-breakpoint-up(md) {
+        display: flex;
+      }
+    }
+
     & td:last-of-type {
       font-weight: 600;
     }
   }
 
   &__th--align {
-    margin-right: 0.8rem;
+    display: none;
 
     @include media-breakpoint-up(md) {
-      margin-right: 2.1rem;
+      display: flex;
     }
   }
 }
@@ -76,4 +84,11 @@
     padding: calc(var(--bs-card-spacer-y) * 0.5)
       calc(var(--bs-card-spacer-x) * 0.5);
   }
+}
+
+.quantity-input {
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  display: flex;
+  align-items: center;
 }

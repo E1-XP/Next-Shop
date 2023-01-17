@@ -67,7 +67,17 @@ export const ProductTable = () => (
               </div>
             </div>
           </td>
-          <td className="align-middle text-center">1</td>
+          <td className="align-middle text-center">
+            <div
+              className={
+                styles["quantity-input"] + " " + spaceGrotesk.className
+              }
+            >
+              <button className="btn">-</button>
+              <span>1</span>
+              <button className="btn">+</button>
+            </div>
+          </td>
           <td className="align-middle text-center">
             ${formatPrice(product.price)}
           </td>

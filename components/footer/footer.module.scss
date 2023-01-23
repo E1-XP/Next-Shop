@@ -1,9 +1,10 @@
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
+@import "../../styles/variables";
 
 .footer {
-  border: 1px solid black;
+  background-color: $color-white-alt;
 }
 
 .appendix {
@@ -21,7 +22,7 @@
   &__social-link {
     padding: 0.4rem;
     display: block;
-    background-color: whitesmoke;
+    background-color: $color-white;
     border-radius: 50%;
 
     &:not(:last-of-type) {

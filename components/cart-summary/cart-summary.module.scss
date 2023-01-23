@@ -1,0 +1,60 @@
+@import "./../../styles/variables";
+
+.cart-summary {
+  margin-top: 5.3rem;
+  margin-bottom: 3.3rem;
+  --bs-card-spacer-y: 1.5rem;
+  --bs-card-spacer-x: 1.5rem;
+
+  &__btn {
+    background-color: $color-dark;
+
+    &:hover {
+      background-color: lighten($color: $color-dark, $amount: 10%);
+    }
+
+    &:active:hover {
+      background-color: lighten($color: $color-dark, $amount: 10%);
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    justify-content: center;
+    border: 1px solid $color-silver;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin: 0.85rem 0;
+
+    &.active {
+      background-color: $color-white-alt;
+      border: 1px solid $color-dark;
+    }
+  }
+
+  &__checkbox input {
+    margin-left: 0 !important;
+    margin-right: 0.5rem;
+
+    &:checked,
+    &:active {
+      background-color: transparent;
+      border-color: $color-dark;
+      --bs-form-check-bg-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='121212'/%3e%3c/svg%3e") !important;
+    }
+  }
+
+  &__total-amount {
+    font-size: 1.14rem;
+    border-top: 1px solid $color-silver;
+    margin-bottom: 1.8rem;
+  }
+
+  &__amount,
+  &__total-amount {
+    padding: 0.5rem 0;
+  }
+}
+
+.active {
+}

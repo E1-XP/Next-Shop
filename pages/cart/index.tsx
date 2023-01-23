@@ -2,10 +2,11 @@ import Head from "next/head";
 
 import { Navigation } from "../../components/navigation";
 import { Footer } from "../../components/footer";
+import { ProductTable } from "../../components/product-table";
+import { CartSummary } from "../../components/cart-summary";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./cart.module.scss";
-import { ProductTable } from "../../components/product-table";
 
 export default function MainPage() {
   return (
@@ -29,6 +30,12 @@ export default function MainPage() {
         <main className="container">
           <section className="products">
             <ProductTable />
+          </section>
+          <section className="row options">
+            <div className="col-md-6"></div>
+            <div className="col-md-6">
+              <CartSummary />
+            </div>
           </section>
         </main>
         <Footer />

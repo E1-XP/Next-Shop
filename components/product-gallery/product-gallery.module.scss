@@ -1,0 +1,21 @@
+@import "../../styles/variables";
+
+.product-gallery {
+  --bs-gutter-x: 1rem;
+
+  &__thumb-link {
+    position: relative;
+  }
+
+  &__thumb-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.active {
+  border: 1px solid $color-dark;
+}

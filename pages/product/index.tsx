@@ -2,9 +2,12 @@ import Head from "next/head";
 
 import { Navigation } from "../../components/navigation";
 import { Footer } from "../../components/footer";
+import { ProductGallery } from "../../components/product-gallery";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./product.module.scss";
+
+import { product } from "./../../components/product-list";
 
 export default function ProductPage() {
   return (
@@ -19,9 +22,11 @@ export default function ProductPage() {
         <header className={styles.header}>
           <Navigation />
         </header>
-        <main className="container">
+        <main className={"container " + styles.main}>
           <div className="row">
-            <div className="col-md-6">photo</div>
+            <div className="col-md-6">
+              <ProductGallery product={product} />
+            </div>
             <div className="col-md-6">product detail</div>
           </div>
           <div className="row">details</div>

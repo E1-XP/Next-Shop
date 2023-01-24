@@ -11,7 +11,7 @@ export const product = {
   price: 22,
   oldPrice: 30,
   rating: 4,
-  images: [image],
+  images: [image, image, image, image, image],
 };
 
 export const product2 = {
@@ -20,7 +20,7 @@ export const product2 = {
   price: 23,
   oldPrice: 32,
   rating: 4,
-  images: [image2],
+  images: [image2, image2, image2, image2, image2],
 };
 
 const data = [] as Product[];

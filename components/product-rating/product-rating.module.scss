@@ -1,0 +1,10 @@
+.product-rating {
+  &__item {
+    width: 1rem;
+
+    &--active {
+      stroke: orange;
+      fill: orange;
+    }
+  }
+}

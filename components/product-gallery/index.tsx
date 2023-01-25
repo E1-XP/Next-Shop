@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Product } from "../product-item";
+import { Product } from "../../store/interfaces";
 
 import styles from "./product-gallery.module.scss";
 

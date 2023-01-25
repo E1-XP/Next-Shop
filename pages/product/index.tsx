@@ -7,7 +7,7 @@ import { ProductGallery } from "../../components/product-gallery";
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./product.module.scss";
 
-import { product } from "./../../components/product-list";
+import { product } from "../../store/data";
 
 export default function ProductPage() {
   return (

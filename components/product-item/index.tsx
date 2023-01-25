@@ -1,16 +1,9 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
-import styles from "./product-item.module.scss";
+import { Product } from "../../store/interfaces";
 
-export interface Product {
-  name: string;
-  brand: string;
-  price: number;
-  oldPrice: number;
-  rating: number;
-  images: StaticImageData[];
-}
+import styles from "./product-item.module.scss";
 
 interface Props {
   product: Product;

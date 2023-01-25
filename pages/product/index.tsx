@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Navigation } from "../../components/navigation";
 import { Footer } from "../../components/footer";
 import { ProductGallery } from "../../components/product-gallery";
+import { ProductDetail } from "../../components/product-detail";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./product.module.scss";
@@ -27,7 +28,9 @@ export default function ProductPage() {
             <div className="col-md-6">
               <ProductGallery product={product} />
             </div>
-            <div className="col-md-6">product detail</div>
+            <div className="col-md-6">
+              <ProductDetail product={product} />
+            </div>
           </div>
           <div className="row">details</div>
         </main>

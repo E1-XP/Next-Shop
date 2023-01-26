@@ -35,7 +35,7 @@ export const ProductDetail = ({ product }: Props) => (
     <p>
       <ProductRating rating={product.rating} />
     </p>
-    <QuantityInput />
+    <QuantityInput fullWidth />
     <button className="btn btn-primary w-100">Add to Cart</button>
   </div>
 );

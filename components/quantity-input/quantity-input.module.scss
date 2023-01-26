@@ -3,4 +3,18 @@
   border-radius: var(--bs-border-radius);
   display: flex;
   align-items: center;
+
+  &--full-width {
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+      width: 33.33%;
+      text-align: left;
+
+      &:last-of-type {
+        text-align: right;
+      }
+    }
+  }
 }

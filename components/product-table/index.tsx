@@ -6,6 +6,7 @@ import { formatPrice } from "../../helpers";
 import styles from "./product-table.module.scss";
 import { spaceGrotesk } from "./../../styles/fonts";
 import { GlobalContext } from "../../store/context";
+import { QuantityInput } from "../quantity-input";
 
 export const ProductTable = () => {
   const [data] = useContext(GlobalContext);
@@ -74,15 +75,7 @@ export const ProductTable = () => {
               </div>
             </td>
             <td className="align-middle text-center">
-              <div
-                className={
-                  styles["quantity-input"] + " " + spaceGrotesk.className
-                }
-              >
-                <button className="btn">-</button>
-                <span>1</span>
-                <button className="btn">+</button>
-              </div>
+              <QuantityInput />
             </td>
             <td className="align-middle text-center">
               ${formatPrice(product.price)}

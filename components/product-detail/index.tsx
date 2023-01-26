@@ -1,8 +1,9 @@
 import { Product } from "../../store/interfaces";
+import { ProductRating } from "../product-rating";
 
 import styles from "./product-detail.module.scss";
 import { spaceGrotesk } from "./../../styles/fonts";
-import { ProductRating } from "../product-rating";
+import { QuantityInput } from "../quantity-input";
 
 interface Props {
   product: Product;
@@ -29,10 +30,12 @@ export const ProductDetail = ({ product }: Props) => (
     <h2 className={spaceGrotesk.className}>{product.brand}</h2>
     <h3 className={spaceGrotesk.className}>{product.name}</h3>
     <p>
-      $86.00 <span>$100.00</span>
+      ${product.price} <span>${product.oldPrice}</span>
     </p>
     <p>
       <ProductRating rating={product.rating} />
     </p>
+    <QuantityInput />
+    <button className="btn btn-primary w-100">Add to Cart</button>
   </div>
 );

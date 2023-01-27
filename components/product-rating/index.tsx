@@ -2,9 +2,10 @@ import styles from "./product-rating.module.scss";
 
 interface Props {
   rating: number;
+  big?: boolean;
 }
 
-export const ProductRating = ({ rating }: Props) => (
+export const ProductRating = ({ rating, big }: Props) => (
   <>
     {Array(5)
       .fill(null)
@@ -14,7 +15,9 @@ export const ProductRating = ({ rating }: Props) => (
           xmlns="http://www.w3.org/2000/svg"
           className={`icon icon-tabler icon-tabler-star ${
             styles["product-rating__item"]
-          } ${i < rating ? styles["product-rating__item--active"] : ""}`}
+          } ${i < rating ? styles["product-rating__item--active"] : ""} ${
+            big ? styles["product-rating__item--big"] : ""
+          }`}
           width={24}
           height={24}
           viewBox="0 0 24 24"

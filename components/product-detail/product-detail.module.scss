@@ -1,5 +1,42 @@
+@import "./../../styles/variables";
+
 .product-detail {
   &__breadcrumb {
     --bs-breadcrumb-divider: ">";
+  }
+
+  &__btn {
+    background-color: $color-dark;
+
+    &:hover {
+      background-color: lighten($color: $color-dark, $amount: 10%);
+    }
+
+    &:active:hover {
+      background-color: lighten($color: $color-dark, $amount: 10%);
+    }
+  }
+
+  &__quantity {
+    background-color: $color-white-alt2;
+    margin-top: auto;
+    margin-bottom: 1rem;
+  }
+
+  &__links {
+    padding: 1rem 0;
+
+    span {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.color-selector {
+  &__option {
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
   }
 }

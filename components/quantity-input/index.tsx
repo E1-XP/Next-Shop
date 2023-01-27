@@ -3,16 +3,19 @@ import { spaceGrotesk } from "./../../styles/fonts";
 
 interface Props {
   fullWidth?: boolean;
+  className?: string;
 }
 
-export const QuantityInput = ({ fullWidth }: Props) => (
+export const QuantityInput = ({ fullWidth, className }: Props) => (
   <div
     className={
       spaceGrotesk.className +
       " " +
       styles["quantity-input"] +
       " " +
-      (fullWidth ? styles["quantity-input--full-width"] : "")
+      (fullWidth ? styles["quantity-input--full-width"] : "") +
+      " " +
+      (className || "")
     }
   >
     <button className="btn">-</button>

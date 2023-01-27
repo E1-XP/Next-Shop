@@ -1,8 +1,27 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
 @import "./../../styles/variables";
 
 .product-detail {
+  justify-content: space-between;
+
+  @include media-breakpoint-up(xl) {
+    padding: 3rem;
+    padding-top: 0;
+  }
+
   &__breadcrumb {
     --bs-breadcrumb-divider: ">";
+  }
+
+  &__title {
+    font-size: 1.875rem;
+  }
+
+  &__subtitle {
+    font-size: 2.125rem;
   }
 
   &__btn {
@@ -19,7 +38,7 @@
 
   &__quantity {
     background-color: $color-white-alt2;
-    margin-top: auto;
+    margin-top: 10%;
     margin-bottom: 1rem;
   }
 
@@ -32,7 +51,25 @@
   }
 }
 
+.price {
+  font-size: 1.625rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+
+  &__old {
+    color: $color-silver-alt;
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: line-through;
+    margin-left: 1rem;
+  }
+}
+
 .color-selector {
+  margin-top: 3rem;
+
   &__option {
     border-radius: 50%;
     height: 2rem;

@@ -1,3 +1,5 @@
+@import "./../../styles//variables";
+
 .product {
   border: none;
   border-radius: 0;
@@ -8,7 +10,8 @@
   }
 
   &__oldprice {
-    color: gray;
+    color: $color-silver-alt;
+    font-weight: 400;
     text-decoration: line-through;
   }
 }

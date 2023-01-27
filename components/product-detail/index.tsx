@@ -7,6 +7,7 @@ import { ProductRating } from "../product-rating";
 import styles from "./product-detail.module.scss";
 import { spaceGrotesk } from "./../../styles/fonts";
 import { QuantityInput } from "../quantity-input";
+import { formatPrice } from "../../helpers";
 
 interface Props {
   product: Product;
@@ -30,16 +31,30 @@ export const ProductDetail = ({ product }: Props) => (
         </li>
       </ol>
     </nav>
-    <h2 className={spaceGrotesk.className}>{product.brand}</h2>
-    <h3 className={spaceGrotesk.className}>{product.name}</h3>
-    <p>
-      ${product.price} <span>${product.oldPrice}</span>
+    <h2
+      className={spaceGrotesk.className + " " + styles["product-detail__title"]}
+    >
+      {product.brand}
+    </h2>
+    <h3
+      className={
+        spaceGrotesk.className + " " + styles["product-detail__subtitle"]
+      }
+    >
+      {product.name}
+    </h3>
+
+    <p className={styles["product-detail__price"] + " " + styles.price}>
+      ${formatPrice(product.price)}
+      <span className={styles["price__old"]}>
+        ${formatPrice(product.oldPrice)}
+      </span>
     </p>
-    <p>
+    <p className="mt-4">
       <ProductRating big rating={product.rating} />
     </p>
 
-    <div className="form-check ps-0 color-selector">
+    <div className={"form-check ps-0 " + styles["color-selector"]}>
       {["beige", "olive", "orangered"].map((color, idx) => (
         <Fragment key={color}>
           <input
@@ -60,7 +75,7 @@ export const ProductDetail = ({ product }: Props) => (
         </Fragment>
       ))}
     </div>
-    <div className="form-check ps-0">
+    <div className="form-check ps-0 mt-3 mb-4">
       {["XS", "S", "M", "L", "XL", "XXL"].map((size, idx) => (
         <Fragment key={size}>
           <input

@@ -1,7 +1,16 @@
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
 @import "./../../styles/variables";
 
 .detail-tabs {
   margin: 6.5rem 0;
+  flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
 
   :global(.nav-link) {
     color: $color-silver-alt;

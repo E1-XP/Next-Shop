@@ -4,7 +4,7 @@ import { spaceGrotesk } from "../../styles/fonts";
 export const DetailTabs = () => (
   <div className={"d-flex align-items-start " + styles["detail-tabs"]}>
     <div
-      className="nav flex-column nav-pills me-3"
+      className="nav nav-pills me-3"
       id="v-pills-tab"
       role="tablist"
       aria-orientation="vertical"

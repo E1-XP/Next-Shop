@@ -1,0 +1,43 @@
+@import "./../../styles/variables";
+
+.detail-tabs {
+  margin: 6.5rem 0;
+
+  :global(.nav-link) {
+    color: $color-silver-alt;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.nav-link.active) {
+    --bs-nav-pills-link-active-color: $color-dark;
+    --bs-nav-pills-link-active-bg: transparent;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 75%;
+      height: 1px;
+      background-color: $color-dark;
+      position: absolute;
+      bottom: 0;
+      left: 12.5%;
+    }
+
+    &:last-of-type::after {
+      width: 60%;
+      left: 20%;
+    }
+  }
+}
+
+.description {
+  &__list {
+    margin: revert;
+    padding: revert;
+  }
+  &__item {
+    list-style-type: disc;
+    display: revert;
+  }
+}

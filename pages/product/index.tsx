@@ -4,6 +4,7 @@ import { Navigation } from "../../components/navigation";
 import { Footer } from "../../components/footer";
 import { ProductGallery } from "../../components/product-gallery";
 import { ProductDetail } from "../../components/product-detail";
+import { DetailTabs } from "../../components/detail-tabs";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./product.module.scss";
@@ -32,7 +33,9 @@ export default function ProductPage() {
               <ProductDetail product={product} />
             </div>
           </div>
-          <div className="row">details</div>
+          <div className="row">
+            <DetailTabs />
+          </div>
         </main>
         <Footer />
       </div>

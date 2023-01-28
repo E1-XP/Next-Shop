@@ -86,7 +86,10 @@ export const ProductDetail = ({ product }: Props) => (
             autoComplete="off"
             checked={idx === 0}
           />
-          <label className="btn" htmlFor={"option" + idx}>
+          <label
+            className={"btn me-2 " + spaceGrotesk.className}
+            htmlFor={"option" + idx}
+          >
             {size}
           </label>
         </Fragment>

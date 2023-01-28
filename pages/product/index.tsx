@@ -5,13 +5,18 @@ import { Footer } from "../../components/footer";
 import { ProductGallery } from "../../components/product-gallery";
 import { ProductDetail } from "../../components/product-detail";
 import { DetailTabs } from "../../components/detail-tabs";
+import { ProductSlider } from "../../components/product-slider";
 
 import { inter, spaceGrotesk } from "../../styles/fonts";
 import styles from "./product.module.scss";
 
 import { product } from "../../store/data";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 export default function ProductPage() {
+  const { width } = useWindowSize();
+  const bpMd = 768;
+
   return (
     <>
       <Head>
@@ -27,7 +32,11 @@ export default function ProductPage() {
         <main className={"container " + styles.main}>
           <div className="row">
             <div className="col-md-6">
-              <ProductGallery product={product} />
+              {width < bpMd ? (
+                <ProductSlider images={product.images} />
+              ) : (
+                <ProductGallery product={product} />
+              )}
             </div>
             <div className="col-md-6">
               <ProductDetail product={product} />

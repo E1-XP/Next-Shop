@@ -32,7 +32,7 @@ export default function ProductPage() {
         <main className={"container " + styles.main}>
           <div className="row">
             <div className="col-md-6">
-              {width < bpMd ? (
+              {width && width < bpMd ? (
                 <ProductSlider images={product.images} />
               ) : (
                 <ProductGallery product={product} />

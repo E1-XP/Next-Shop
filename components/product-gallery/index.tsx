@@ -11,14 +11,14 @@ interface Props {
 }
 
 export const ProductGallery = ({ product }: Props) => {
-  const zoomElemRef = useRef<HTMLDivElement>();
-  const mainImgRef = useRef<HTMLImageElement>();
+  const mainImgRef = useRef<HTMLImageElement>(null);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const zoomInOut = useCallback(
     (e: MouseEvent) => {
       const rect = mainImgRef.current?.getBoundingClientRect();
+      if (!rect) return console.error("cannot get client rect");
 
       const x = e.pageX - rect?.left;
       const y = e.pageY - rect?.top;
@@ -72,7 +72,6 @@ export const ProductGallery = ({ product }: Props) => {
               backgroundPositionY: `${mousePos.y}%`,
             }}
             onMouseMove={zoomInOut}
-            ref={zoomElemRef}
           ></div>
         </Link>
       </div>

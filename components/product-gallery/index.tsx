@@ -13,6 +13,7 @@ interface Props {
 export const ProductGallery = ({ product }: Props) => {
   const mainImgRef = useRef<HTMLImageElement>(null);
 
+  const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const zoomInOut = useCallback(
@@ -22,8 +23,10 @@ export const ProductGallery = ({ product }: Props) => {
 
       const x = e.pageX - rect?.left;
       const y = e.pageY - rect?.top;
+
       const imgWidth = rect?.width;
       const imgHeight = rect?.height;
+
       const xPercent = (x / imgWidth) * 100;
       const yPercent = (y / imgHeight) * 100;
 
@@ -31,6 +34,18 @@ export const ProductGallery = ({ product }: Props) => {
     },
     [mainImgRef]
   );
+
+  const hoverImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!e.currentTarget) return console.error("Current target not found.");
+
+    if (!e.currentTarget.dataset) {
+      return console.error("Dataset property is undefined.");
+    }
+
+    const idx = Number(e.currentTarget.dataset.idx);
+
+    setCurrentImgIdx(idx);
+  }, []);
 
   return (
     <div className={"row " + styles["product-gallery"]}>
@@ -50,8 +65,10 @@ export const ProductGallery = ({ product }: Props) => {
               className={
                 styles["product-gallery__thumb-cover"] +
                 " " +
-                (!idx ? styles.active : "")
+                (idx === currentImgIdx ? styles.active : "")
               }
+              data-idx={idx}
+              onMouseOver={hoverImage}
             ></div>
           </Link>
         ))}
@@ -60,7 +77,7 @@ export const ProductGallery = ({ product }: Props) => {
         <Link href="#" className="d-block position-relative">
           <Image
             className={"img-fluid " + styles["product-gallery__main-img"]}
-            src={product.images[0]}
+            src={product.images[currentImgIdx]}
             alt={`model presenting ${product.brand} ${product.name}`}
             ref={mainImgRef}
           />

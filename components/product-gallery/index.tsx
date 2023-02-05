@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MouseEvent, useCallback, useRef, useState } from "react";
 
 import { Product } from "../../store/interfaces";
+import { LightboxSlider } from "../lightbox-modal";
 
 import styles from "./product-gallery.module.scss";
 
@@ -89,9 +90,12 @@ export const ProductGallery = ({ product }: Props) => {
               backgroundPositionY: `${mousePos.y}%`,
             }}
             onMouseMove={zoomInOut}
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
           ></div>
         </Link>
       </div>
+      <LightboxSlider />
     </div>
   );
 };

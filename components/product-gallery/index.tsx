@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MouseEvent, useCallback, useRef, useState } from "react";
 
 import { Product } from "../../store/interfaces";
-import { LightboxSlider } from "../lightbox-modal";
+import { LightboxModal } from "../lightbox-modal";
 
 import styles from "./product-gallery.module.scss";
 
@@ -95,7 +95,11 @@ export const ProductGallery = ({ product }: Props) => {
           ></div>
         </Link>
       </div>
-      <LightboxSlider />
+      <LightboxModal
+        product={product}
+        currentImgIdx={currentImgIdx}
+        setCurrentImgIdx={setCurrentImgIdx}
+      />
     </div>
   );
 };

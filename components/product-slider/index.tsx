@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 import { Product } from "../../store/interfaces";
+
 import styles from "./product-slider.module.scss";
 
 interface Props {
-  images: Product["images"];
+  product: Product;
 }
 
-export const ProductSlider = ({ images }: Props) => (
+export const ProductSlider = ({ product }: Props) => (
   <div
     id="carouselExampleControls"
     className={"carousel slide " + styles["product-slider"]}
@@ -15,10 +16,12 @@ export const ProductSlider = ({ images }: Props) => (
     data-bs-interval="5000"
   >
     <div className="carousel-inner">
-      {images.map((img, idx) => (
+      {product.images.map((img, idx) => (
         <div
           key={idx}
           className={`carousel-item ${idx === 0 ? "active" : ""} h-100`}
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
         >
           <Image
             src={img}

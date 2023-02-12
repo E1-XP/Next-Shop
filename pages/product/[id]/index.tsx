@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState } from "react";
 
 import { Navigation } from "../../../components/navigation";
 import { Footer } from "../../../components/footer";
@@ -6,6 +7,7 @@ import { ProductGallery } from "../../../components/product-gallery";
 import { ProductDetail } from "../../../components/product-detail";
 import { DetailTabs } from "../../../components/detail-tabs";
 import { ProductSlider } from "../../../components/product-slider";
+import { LightboxModal } from "../../../components/lightbox-modal";
 
 import { inter, spaceGrotesk } from "../../../styles/fonts";
 import styles from "./product.module.scss";
@@ -14,6 +16,8 @@ import { product } from "../../../store/data";
 import { useWindowSize } from "../../../hooks/useWindowSize";
 
 export default function ProductPage() {
+  const [currentImgIdx, setCurrentImgIdx] = useState(0);
+
   const { width } = useWindowSize();
   const bpMd = 768;
 
@@ -33,9 +37,13 @@ export default function ProductPage() {
           <div className="row">
             <div className="col-md-6">
               {width && width < bpMd ? (
-                <ProductSlider images={product.images} />
+                <ProductSlider product={product} />
               ) : (
-                <ProductGallery product={product} />
+                <ProductGallery
+                  product={product}
+                  currentImgIdx={currentImgIdx}
+                  setCurrentImgIdx={setCurrentImgIdx}
+                />
               )}
             </div>
             <div className="col-md-6">
@@ -47,6 +55,11 @@ export default function ProductPage() {
           </div>
         </main>
         <Footer />
+        <LightboxModal
+          product={product}
+          currentImgIdx={currentImgIdx}
+          setCurrentImgIdx={setCurrentImgIdx}
+        />
       </div>
     </>
   );

@@ -1,20 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MouseEvent, useCallback, useRef, useState } from "react";
+import {
+  Dispatch,
+  MouseEvent,
+  SetStateAction,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 
 import { Product } from "../../store/interfaces";
-import { LightboxModal } from "../lightbox-modal";
 
 import styles from "./product-gallery.module.scss";
 
 interface Props {
   product: Product;
+  currentImgIdx: number;
+  setCurrentImgIdx: Dispatch<SetStateAction<number>>;
 }
 
-export const ProductGallery = ({ product }: Props) => {
+export const ProductGallery = ({
+  product,
+  currentImgIdx,
+  setCurrentImgIdx,
+}: Props) => {
   const mainImgRef = useRef<HTMLImageElement>(null);
 
-  const [currentImgIdx, setCurrentImgIdx] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const zoomInOut = useCallback(
@@ -95,11 +106,6 @@ export const ProductGallery = ({ product }: Props) => {
           ></div>
         </Link>
       </div>
-      <LightboxModal
-        product={product}
-        currentImgIdx={currentImgIdx}
-        setCurrentImgIdx={setCurrentImgIdx}
-      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Product } from "../../store/interfaces";
 import { ClientSidePortal } from "./../client-side-portal";
@@ -18,17 +18,62 @@ export const LightboxModal = ({
   currentImgIdx,
   setCurrentImgIdx,
 }: Props) => {
-  const hoverImage = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!e.currentTarget) return console.error("Current target not found.");
+  const mainImgRef = useRef<HTMLImageElement>(null);
 
+  const [isImgZoomed, setIsZoomed] = useState(false);
+  const [mouseYPos, setMouseYPos] = useState(0);
+  const [computedYPos, setComputedYPos] = useState(0);
+
+  const toggleZoomed = useCallback(
+    () => setIsZoomed(!isImgZoomed),
+    [isImgZoomed]
+  );
+
+  const setMousePos = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = mainImgRef.current?.getBoundingClientRect();
+      if (!rect) return console.error("Cannot get client rect.");
+
+      const y = e.pageY;
+      if (!isImgZoomed) setMouseYPos(y);
+    },
+    [mainImgRef, isImgZoomed]
+  );
+
+  const hoverThumbnail = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!e.currentTarget) return console.error("Current target not found.");
     if (!e.currentTarget.dataset) {
       return console.error("Dataset property is undefined.");
     }
 
     const idx = Number(e.currentTarget.dataset.idx);
-
     setCurrentImgIdx(idx);
   }, []);
+
+  useEffect(() => {
+    const rect = mainImgRef.current?.getBoundingClientRect();
+    if (!rect) return console.error("Cannot get client rect.");
+
+    const getYPosBoundaries = () => {
+      const twentyPercentOfHeight = rect.bottom / 5;
+      const isBelowTwentyPercent = mouseYPos < twentyPercentOfHeight;
+      const isOverSixtyPercent = mouseYPos > twentyPercentOfHeight * 3;
+
+      if (isBelowTwentyPercent) return 0;
+      if (isOverSixtyPercent) return rect.bottom;
+      return mouseYPos;
+    };
+    const yPos = getYPosBoundaries();
+
+    setComputedYPos(Math.min(rect.height - window.innerHeight, yPos));
+  }, [isImgZoomed, mouseYPos]);
+
+  useEffect(() => {
+    const turnOffZoomIn = () => isImgZoomed && toggleZoomed();
+
+    window.addEventListener("resize", turnOffZoomIn);
+    return () => window.removeEventListener("resize", turnOffZoomIn);
+  }, [isImgZoomed]);
 
   return (
     <ClientSidePortal selector="#modal">
@@ -47,7 +92,7 @@ export const LightboxModal = ({
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
-            <div className={"modal-body"}>
+            <div className={"modal-body " + styles["modal-body"]}>
               <aside className={styles["lightbox-modal__menu"]}>
                 {product.images.map((src, idx) => (
                   <Link
@@ -69,34 +114,35 @@ export const LightboxModal = ({
                         (idx === currentImgIdx ? styles.active : "")
                       }
                       data-idx={idx}
-                      onMouseOver={hoverImage}
+                      onMouseOver={hoverThumbnail}
                     ></div>
                   </Link>
                 ))}
               </aside>
               <div
                 className={
-                  "position-relative h-100 " +
-                  styles["lightbox-modal__img-wrapper"]
+                  "position-relative " +
+                  styles["lightbox-modal__img-wrapper"] +
+                  " " +
+                  (isImgZoomed ? styles["lightbox-modal__zoom"] : "")
                 }
+                onClick={toggleZoomed}
+                onMouseMove={setMousePos}
               >
                 <Image
                   className={
-                    "img-fluid d-block " + styles["lightbox-modal__main-img"]
+                    "img-fluid d-block " +
+                    styles["lightbox-modal__main-img"] +
+                    (!isImgZoomed ? " h-100" : "")
                   }
                   src={product.images[currentImgIdx]}
                   alt={`model presenting ${product.brand} ${product.name}`}
-                  // ref={mainImgRef}
+                  ref={mainImgRef}
+                  style={{
+                    top: isImgZoomed ? `-${computedYPos}px` : "0px",
+                    cursor: isImgZoomed ? "zoom-out" : "zoom-in",
+                  }}
                 />
-                <div
-                  className={styles["lightbox-modal__zoom"]}
-                  // style={{
-                  //   background: `url(${product.images[0].src}) no-repeat`,
-                  //   backgroundPositionX: `${mousePos.x}%`,
-                  //   backgroundPositionY: `${mousePos.y}%`,
-                  // }}
-                  // onMouseMove={zoomInOut}
-                ></div>
               </div>
             </div>
           </div>

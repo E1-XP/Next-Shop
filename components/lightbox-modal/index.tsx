@@ -4,8 +4,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Product } from "../../store/interfaces";
 import { ClientSidePortal } from "./../client-side-portal";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 import styles from "./lightbox-modal.module.scss";
+import { spaceGrotesk } from "../../styles/fonts";
 
 interface Props {
   product: Product;
@@ -20,6 +22,9 @@ export const LightboxModal = ({
 }: Props) => {
   const mainImgRef = useRef<HTMLImageElement>(null);
 
+  const { width } = useWindowSize();
+  const bpMd = 768;
+
   const [isImgZoomed, setIsZoomed] = useState(false);
   const [mouseYPos, setMouseYPos] = useState(0);
   const [computedYPos, setComputedYPos] = useState(0);
@@ -27,6 +32,22 @@ export const LightboxModal = ({
   const toggleZoomed = useCallback(
     () => setIsZoomed(!isImgZoomed),
     [isImgZoomed]
+  );
+
+  const prevImage = useCallback(
+    () =>
+      setCurrentImgIdx(
+        currentImgIdx <= 0 ? product.images.length - 1 : currentImgIdx - 1
+      ),
+    [currentImgIdx]
+  );
+
+  const nextImage = useCallback(
+    () =>
+      setCurrentImgIdx(
+        currentImgIdx >= product.images.length - 1 ? 0 : currentImgIdx + 1
+      ),
+    [currentImgIdx]
   );
 
   const setMousePos = useCallback(
@@ -78,7 +99,7 @@ export const LightboxModal = ({
   return (
     <ClientSidePortal selector="#modal">
       <div
-        className="modal fade"
+        className={"modal fade " + styles["lightbox-modal"]}
         id="exampleModal"
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
@@ -118,13 +139,56 @@ export const LightboxModal = ({
                     ></div>
                   </Link>
                 ))}
+                <div className={styles["lightbox-modal__mobile-nav"]}>
+                  <span
+                    className={
+                      styles["lightbox-modal__mobile-count"] +
+                      " " +
+                      spaceGrotesk.className
+                    }
+                  >
+                    {currentImgIdx + 1} / {product.images.length}
+                  </span>
+                  <button
+                    className="btn d-flex"
+                    type="button"
+                    onClick={prevImage}
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    className="btn d-flex"
+                    type="button"
+                    onClick={nextImage}
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="visually-hidden">Next</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={
+                      "btn-close " + styles["lightbox-modal__mobile-close"]
+                    }
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
               </aside>
               <div
                 className={
                   "position-relative " +
                   styles["lightbox-modal__img-wrapper"] +
                   " " +
-                  (isImgZoomed ? styles["lightbox-modal__zoom"] : "")
+                  (isImgZoomed && width && width > bpMd
+                    ? styles["lightbox-modal__zoom"]
+                    : "")
                 }
                 onClick={toggleZoomed}
                 onMouseMove={setMousePos}
